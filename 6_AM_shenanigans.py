@@ -1,6 +1,5 @@
 import random
 
-# Declaring constants
 FLAG_SYMBOL = '\u2691'
 ALPHABET = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
 
