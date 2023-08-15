@@ -67,6 +67,10 @@ class MinesweeperGame():
             print("Relax superhero. Let's stick to 15 max and see if you aren't vaporized after.")
             self.size = 15
         self.num_mines = int(input("Enter the number of mines: "))
+        if self.num_mines > ((self.size ** 2) - 1):
+            print("Daring today aren't we?")
+            self.num_mines = round(((self.size ** 2) * 0.15))
+            print(f'How about we stick to {self.num_mines} instead.')
         self.hidden_board = Hidden(self.size, self.num_mines)
         self.player_board = Minefield(self.size)
         self.play()
