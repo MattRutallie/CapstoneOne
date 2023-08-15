@@ -63,6 +63,9 @@ class Hidden(Minefield):
 class MinesweeperGame():
     def __init__(self):
         self.size = int(input("Enter the size of the minefield: "))
+        if self.size > 15:
+            print("Relax superhero. Let's stick to 15 max and see if you aren't vaporized after.")
+            self.size = 15
         self.num_mines = int(input("Enter the number of mines: "))
         self.hidden_board = Hidden(self.size, self.num_mines)
         self.player_board = Minefield(self.size)
@@ -86,7 +89,7 @@ class MinesweeperGame():
                         self.player_board.board[new_row][new_col] = self.hidden_board.board[new_row][new_col]
                         if self.hidden_board.board[new_row][new_col] == ' ':
                             self.uncover(new_row, new_col)
-    
+
     def all_mines_flagged(self):
         for row in range(self.size):
             for col in range(self.size):
@@ -96,13 +99,13 @@ class MinesweeperGame():
 
     # this updates the "MinesweeperGame" to include flagging funcationality. with ~flavor~
     def play(self):
-        
+
 
         while True:
             self.player_board.display(self.player_board.board)
             print('U - Uncover | F - Flag/Undo flag | Q - Flag/Undo Flag with question mark')
             action = input('Please enter the action you would like to perform: ')
-            
+
             if action.upper() == 'U':
                 row = input(f"Enter row (A to {alphabet[self.size - 1]}): ")
                 row = row = alphabet.index(row.upper())
@@ -116,10 +119,9 @@ class MinesweeperGame():
                              "As you relize the gravity of your actions, you find yourself relived of your wordly belongings (and your legs, oof).")
                         self.hidden_board.display(self.hidden_board.board)
                         print('You are cast into the void, game over.')
-
                         exit()
                     else:
-                        print("This room apprears to not be lined with anti personal mines, nice. Keep it up!")
+                        print("This room appears to not be lined with anti-personal mines, nice. Keep it up!")
                 else:
                     print(
                         f"While I respect the creativity, we are all bound to confines of space and time(and the rules of this game). Row and column must be between 1 and {self.size}.")
@@ -132,11 +134,11 @@ class MinesweeperGame():
                 col -= 1
                 if 0 <= row < self.size and 0 <= col < self.size:
                     self.player_board.board[row][col] = FLAG_SYMBOL
-                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice")
+                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice!")
                 else:
                     print(
                         f"Were you looking to place a flag in the void? Or on the board? The choices are between 1 and {self.size}.")
-                    
+
             elif action.upper() == 'Q' or action.upper() == '?':
                 row = input(f"Enter row (A to {alphabet[self.size - 1]}) to mark a cell: ")
                 row = alphabet.index(row.upper())
@@ -145,17 +147,17 @@ class MinesweeperGame():
                 if 0 <= row < self.size and 0 <= col < self.size:
                     self.player_board.board[row][col] = QUESTION_MARK_SYMBOL
                     print(
-                        "Ah yes. The greatest question of all. While i violently explode if i enter this room? Room marked.")
-                    
+                        'Ah yes, the greatest question of all: "Will I violently explode if I enter this room?" Room marked.')
+
             else:
                 print('Action not recognized, please try again.')
-            
+
             if self.all_mines_flagged():
-                print("Congratulations! You've flagged all mines and won the game!")
                 self.hidden_board.display(self.hidden_board.board)
+                print("Congratulations! You've flagged all mines and won the game!")
                 exit()    
-          
-                
+
+
 if __name__ == '__main__':
     print("Welcome to Minesweeper! You pulled the short straw eh? Gooooooooooood luck pal.")
     MinesweeperGame()
