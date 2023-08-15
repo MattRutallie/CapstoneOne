@@ -42,7 +42,6 @@ class Hidden(Minefield):
                 self.board[row][col] = '☀'
                 mines_placed += 1
 
-
     def count_adjacent_mines(self):
         for row in range(self.size):
             for col in range(self.size):
@@ -127,8 +126,8 @@ class MinesweeperGame():
                     else:
                         print("This room appears to not be lined with anti-personal mines, nice. Keep it up!")
                 else:
-                    print(
-                        f"While I respect the creativity, we are all bound to confines of space and time(and the rules of this game). Row and column must be between 1 and {self.size}.")
+                    print(f"While I respect the creativity, we are all bound to confines of space and time(and the rules of this game)." 
+                          f"Row and column must be between 1 and {self.size}.")
 
 
             elif action.upper() == 'F':
