@@ -96,40 +96,15 @@ class MinesweeperGame():
     # this updates the "MinesweeperGame" to include flagging funcationality. with ~flavor~
     def play(self):
         print("Welcome to Minesweeper! You pulled the short straw eh? Gooooooooooood luck pal.")
+
         while True:
             self.player_board.display(self.player_board.board)
             print('U - Uncover | F - Flag/Undo flag | Q - Flag/Undo Flag with question mark')
             action = input('Please enter the action you would like to perform: ')
-            if action.upper == 'U':
+            
+            if action.upper() == 'U':
                 row = input(f"Enter row (A to {alphabet[self.size - 1]}): ")
                 row = row = alphabet.index(row.upper())
-                col = int(input(f"Enter column (1 to {self.size}): "))
-                col -= 1
-
-            elif action.upper() == 'F':
-                row = input(f"Enter row (A to {alphabet[self.size - 1]}): ")
-                row = alphabet.index(row.upper())
-                col = int(input(f"Enter column (1 to {self.size}): "))
-                col -= 1
-                if 0 <= row < self.size and 0 <= col < self.size:
-                    self.player_board.board[row][col] = FLAG_SYMBOL
-                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice")
-                else:
-                    print(
-                        f"Were you looking to place a flag in the void? Or on the board? The choices are between 1 and {self.size}.")
-                    
-            elif row == 'Q' or row == '?':
-                row = input(f"Enter row (A to {alphabet[self.size - 1]}) to mark a cell: ")
-                row = alphabet.index(row.upper())
-                col = int(input(f"Enter column (1 to {self.size}): "))
-                col -= 1
-                if 0 <= row < self.size and 0 <= col < self.size:
-                    self.player_board.board[row][col] = QUESTION_MARK_SYMBOL
-                    print(
-                        "Ah yes. The greatest question of all. While i violently explode if i enter this room? Room marked.")
-                    
-            else:
-                row = alphabet.index(row.upper())
                 col = int(input(f"Enter column (1 to {self.size}): "))
                 col -= 1
                 if 0 <= row < self.size and 0 <= col < self.size:
@@ -148,7 +123,35 @@ class MinesweeperGame():
                         print("This room apprears to not be lined with anti personal mines, nice. Keep it up!")
                 else:
                     print(
-                        f"While i respect the creativity, we are all bound to confines of space and time.(and the rules of this game) Row and column must be between 1 and {self.size}.")
+                        f"While I respect the creativity, we are all bound to confines of space and time(and the rules of this game). Row and column must be between 1 and {self.size}.")
+
+
+            elif action.upper() == 'F':
+                row = input(f"Enter row (A to {alphabet[self.size - 1]}): ")
+                row = alphabet.index(row.upper())
+                col = int(input(f"Enter column (1 to {self.size}): "))
+                col -= 1
+                if 0 <= row < self.size and 0 <= col < self.size:
+                    self.player_board.board[row][col] = FLAG_SYMBOL
+                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice")
+                else:
+                    print(
+                        f"Were you looking to place a flag in the void? Or on the board? The choices are between 1 and {self.size}.")
+                    
+            elif action.upper() == 'Q' or action.upper() == '?':
+                row = input(f"Enter row (A to {alphabet[self.size - 1]}) to mark a cell: ")
+                row = alphabet.index(row.upper())
+                col = int(input(f"Enter column (1 to {self.size}): "))
+                col -= 1
+                if 0 <= row < self.size and 0 <= col < self.size:
+                    self.player_board.board[row][col] = QUESTION_MARK_SYMBOL
+                    print(
+                        "Ah yes. The greatest question of all. While i violently explode if i enter this room? Room marked.")
+                    
+            else:
+                print('Action not recognized, please try again.')
+                
+                
 
 
 if __name__ == '__main__':
