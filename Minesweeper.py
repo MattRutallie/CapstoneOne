@@ -110,14 +110,12 @@ class MinesweeperGame():
                 col -= 1
                 if 0 <= row < self.size and 0 <= col < self.size:
                     result = self.uncover(row, col)
-                    if result == 'Soiled it':
-                        if self.hidden_board.all_mines_flagged():
-                            print(
-                                "Upon stepping into the ro- wait, what? You FINISHED? Unbelievable. Congrats, you did the most and did not explode in the process. GG")
-                        else:
-                            print(
-                                "Upon stepping into the room, you hear a soft click as a pressure plate depresses underfoot. As you relize the gravity of your actions, you find yourself relived of your wordly belongings (and your legs, oof), and cast into the void")
-                            self.hidden_board.display(self.hidden_board.board)
+                    if result == 'Game Over':
+                        print(
+                             "Upon stepping into the room, you hear a soft click as a pressure plate depresses underfoot.\n" 
+                             "As you relize the gravity of your actions, you find yourself relived of your wordly belongings (and your legs, oof).")
+                        self.hidden_board.display(self.hidden_board.board)
+                        print('You are cast into the void, game over.')
 
                         exit()
                     else:
