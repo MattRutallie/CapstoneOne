@@ -64,7 +64,7 @@ class MinesweeperGame():
     def __init__(self):
         self.size = int(input("Enter the size of the minefield: "))
         if self.size > 15:
-            print("Relax superhero. Lets stick to 15 max and see if you arent vaporized after.")
+            print("Relax superhero. Let's stick to 15 max and see if you aren't vaporized after.")
             self.size = 15
         self.num_mines = int(input("Enter the number of mines: "))
         self.hidden_board = Hidden(self.size, self.num_mines)
@@ -114,17 +114,14 @@ class MinesweeperGame():
                 if 0 <= row < self.size and 0 <= col < self.size:
                     result = self.uncover(row, col)
                     if result == 'Game Over':
-                        if self.hidden_board.all_mines_flagged():
-                            print(
-                                "Upon stepping into the ro- wait, what? You FINISHED? Unbelievable. Congrats, you did the most and did not explode in the process. GG")
-                        else:
-                            print(
-                                "Upon stepping into the room, you hear a soft click as a pressure plate depresses underfoot. As you relize the gravity of your actions, you find yourself relived of your wordly belongings (and your legs, oof), and cast into the void")
-                            self.hidden_board.display(self.hidden_board.board)
-
+                        print(
+                             "Upon stepping into the room, you hear a soft click as a pressure plate depresses underfoot.\n" 
+                             "As you relize the gravity of your actions, you find yourself relived of your wordly belongings (and your legs, oof).")
+                        self.hidden_board.display(self.hidden_board.board)
+                        print('You are cast into the void, game over.')
                         exit()
                     else:
-                        print("This room apprears to not be lined with anti personal mines, nice. Keep it up!")
+                        print("This room appears to not be lined with anti-personal mines, nice. Keep it up!")
                 else:
                     print(
                         f"While I respect the creativity, we are all bound to confines of space and time(and the rules of this game). Row and column must be between 1 and {self.size}.")
@@ -137,7 +134,7 @@ class MinesweeperGame():
                 col -= 1
                 if 0 <= row < self.size and 0 <= col < self.size:
                     self.player_board.board[row][col] = FLAG_SYMBOL
-                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice")
+                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice!")
                 else:
                     print(
                         f"Were you looking to place a flag in the void? Or on the board? The choices are between 1 and {self.size}.")
@@ -150,14 +147,14 @@ class MinesweeperGame():
                 if 0 <= row < self.size and 0 <= col < self.size:
                     self.player_board.board[row][col] = QUESTION_MARK_SYMBOL
                     print(
-                        "Ah yes. The greatest question of all. While i violently explode if i enter this room? Room marked.")
+                        'Ah yes, the greatest question of all: "Will I violently explode if I enter this room?" Room marked.')
 
             else:
                 print('Action not recognized, please try again.')
 
             if self.all_mines_flagged():
-                print("Congratulations! You've flagged all mines and won the game!")
                 self.hidden_board.display(self.hidden_board.board)
+                print("Congratulations! You've flagged all mines and won the game!")
                 exit()    
 
 
