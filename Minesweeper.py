@@ -149,9 +149,13 @@ class MinesweeperGame():
                 col = int(input(f"Enter column (1 to {self.size}): "))
                 col -= 1
                 if 0 <= row < self.size and 0 <= col < self.size:
-                    self.player_board.board[row][col] = QUESTION_MARK_SYMBOL
-                    print(
-                        'Ah yes, the greatest question of all: "Will I violently explode if I enter this room?" Room marked.')
+                    if self.player_board.board[row][col] == QUESTION_MARK_SYMBOL:
+                        self.player_board.board[row][col] = '☐'
+                        print(f"'?' removed from [{alphabet[row]},{col + 1}]." 
+                               "Congrats on finally making up your mind.")
+                    else:
+                        self.player_board.board[row][col] = QUESTION_MARK_SYMBOL
+                        print('Ah yes, the greatest question of all: "Will I violently explode if I enter this room?" Room marked.')
 
             else:
                 print('Action not recognized, please try again.')
