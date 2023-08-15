@@ -90,7 +90,7 @@ class MinesweeperGame():
     def all_mines_flagged(self):
         for row in range(self.size):
             for col in range(self.size):
-                if self.board[row][col] == '☀' and self.player_board.board[row][col] != FLAG_SYMBOL:
+                if self.hidden_board.board[row][col] == '☀' and self.player_board.board[row][col] != FLAG_SYMBOL:
                     return False
         return True
 
@@ -152,7 +152,7 @@ class MinesweeperGame():
             else:
                 print('Action not recognized, please try again.')
             
-            if self.hidden_board.all_mines_flagged():
+            if self.all_mines_flagged():
                 print("Congratulations! You've flagged all mines and won the game!")
                 self.hidden_board.display(self.hidden_board.board)
                 exit()    
