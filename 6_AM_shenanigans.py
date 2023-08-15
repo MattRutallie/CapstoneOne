@@ -142,8 +142,10 @@ def play_game():
             if 0 <= row < size and 0 <= col < size:
                 result = uncover(board.shown, board.hidden, row, col)
                 if result == 'Game Over':
+                    print("Upon stepping into the room, you hear a soft click as a pressure plate depresses underfoot.\n" 
+                          "As you relize the gravity of your actions, you find yourself relived of your wordly belongings (and your legs, oof).")
                     display_board(board.hidden)
-                    print("Game Over. You hit a mine!")
+                    print("Your body is blown to smithereens, game over.")
                     exit()
                 else:
                     print("This room appears to be safe. Keep it up!")
