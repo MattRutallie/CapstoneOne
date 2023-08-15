@@ -131,10 +131,14 @@ class MinesweeperGame():
                 row = input(f"Enter row (A to {alphabet[self.size - 1]}): ")
                 row = alphabet.index(row.upper())
                 col = int(input(f"Enter column (1 to {self.size}): "))
-                col -= 1
+                col -= 1  
                 if 0 <= row < self.size and 0 <= col < self.size:
-                    self.player_board.board[row][col] = FLAG_SYMBOL
-                    print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice!")
+                    if self.player_board.board[row][col] == FLAG_SYMBOL:
+                        self.player_board.board[row][col] = '☐'
+                        print(f'Flag removed from [{alphabet[row]},{col + 1}] tread lightly.')
+                    else:
+                        self.player_board.board[row][col] = FLAG_SYMBOL
+                        print("Cell marked as full of deadly explosives and should be avoided at all costs. Nice!")
                 else:
                     print(
                         f"Were you looking to place a flag in the void? Or on the board? The choices are between 1 and {self.size}.")
