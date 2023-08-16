@@ -102,6 +102,7 @@ def play_game():
     if size < 3:
         print("That's too small, how about we up it a bit?")
         size = 7
+        print(f'Size set to {size} instead.')
 
     num_mines = int(input("Enter the number of mines: "))
     if num_mines > ((size ** 2) - 1):
@@ -118,12 +119,30 @@ def play_game():
     while True:
         display_board(board.shown)
         print('U - Uncover | F - Flag/Undo flag | Q - Flag/Undo Flag with question mark')
-        action = input('Please enter the action you would like to perform: ')
+        
+        # Simple validation loop
+        while True:
+            accepted_actions = ['F', 'FLAG', 'U', 'UNCOVER', '?', 'Q']
+            action = input('Please enter the action you would like to perform: ').upper()
 
-        row = input(f"Enter row (A to {ALPHABET[size - 1]}): ")
-        row = ALPHABET.index(row.upper())
-        col = int(input(f"Enter column (1 to {size}): "))
-        col -= 1 
+            if action in accepted_actions:
+                row_input = input(f"Enter row (A to {ALPHABET[size - 1]}): ")
+                try:
+                    row = ALPHABET.index(row_input.upper())
+                except ValueError:
+                    print('That input is not accepted. Please try again')
+                else:
+                    col_input = input(f"Enter column (1 to {size}): ")
+                    try:
+                        col = int(col_input)
+                    except ValueError:
+                        print('That input is not accepted. Please try again')
+                    else:
+                        col -= 1
+                        break
+            else:
+                print(f'{action} is not an accepted input. Please try again.')
+
         
         if action.upper() == 'F' or action.upper() == 'FLAG': 
             if 0 <= row < size and 0 <= col < size:
